@@ -123,12 +123,19 @@ dotnet run
 
 ## Screenshots
 
-> (Add these as you go)
-- Dashboard with summary boxes
-- API token manager
-- Reporting page
-- Error page fallback
-- Cart & Checkout flow
+-![image](https://github.com/user-attachments/assets/fe7bccda-f4f0-4f7b-9b79-0beaba45b6ba)
+
+- ![image](https://github.com/user-attachments/assets/55a594be-e727-4806-aa4f-2991ff336f67)
+
+- ![image](https://github.com/user-attachments/assets/fd29deea-8a47-4c0a-a644-3537176b6635)
+
+
+- ![image](https://github.com/user-attachments/assets/bafce69c-9287-43a4-b058-47c02703e8f3)
+
+Cart & Checkout flow
+- ![image](https://github.com/user-attachments/assets/77dd5c63-3e10-49ea-b1ee-54088b760ef6)
+
+- 
 
 ---
 
