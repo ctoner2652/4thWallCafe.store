@@ -135,7 +135,8 @@ dotnet run
 
 - Order Confirmation Screen ![image](https://github.com/user-attachments/assets/77dd5c63-3e10-49ea-b1ee-54088b760ef6)
 
-- 
+- Management Home Screen ![image](https://github.com/user-attachments/assets/b7afb567-8838-497c-b80f-dc4cb7a74e9c)
+
 
 ---
 
