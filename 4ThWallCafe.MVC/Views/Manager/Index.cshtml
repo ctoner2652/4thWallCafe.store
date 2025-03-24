@@ -1,0 +1,61 @@
+﻿@model ManagerHomeModel
+@{
+    ViewData["Title"] = "Welcome to 4th Wall Café Management System!";
+    Layout = "_ManagerLayout";
+}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Welcome to 4th Wall Café Dashboard</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card text-white" style="background-color: #8B5E3C;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Today's Orders</h5>
+                    <h3 class="display-4">@Model.todayOrders</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white" style="background-color: #4F7942;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Today's Sales</h5>
+                    <h3 class="display-4">@Model.todaySales</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white" style="background-color: #D4A373;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Last 30 Days Revenue</h5>
+                    <h3 class="display-4">@Model.monthlySales</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Did You Know?</h5>
+                    <p class="text-center">
+                        4th Wall Café has served over <strong>@Model.allTimeOrders</strong> orders since opening!
+                        Thanks to our amazing staff for keeping things running smoothly.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Employee Spotlight</h5>
+                    <p class="text-center">
+                        Our employee of the month is <strong>@Model.employeeOfMonth</strong>!
+                        Keep up the great work and thank you for your dedication!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

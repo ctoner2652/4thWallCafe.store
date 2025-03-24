@@ -1,0 +1,68 @@
+﻿@model ReportRequestModel
+
+@{
+    ViewData["Title"] = "Create New Report";
+    Layout = "_ManagerLayout";
+}
+
+<form method="post" asp-action="GenerateReport" asp-controller="Report">
+    <div class="container text-center">
+        <h2>Generate Sales Report</h2>
+
+        <div class="row">
+            <div class="col">
+                <label for="timeRange">Time Range:</label>
+                <select id="timeRange" name="TimeRange" class="form-select">
+                    <option value="1d">Last 1 Day</option>
+                    <option value="1w">Last 1 Week</option>
+                    <option value="1m">Last 1 Month</option>
+                    <option value="1y">Last 1 Year</option>
+                    <option value="10y">Last 10 Years</option>
+                </select>
+            </div>
+
+            <div class="col">
+                <label for="categoryId">Select Category (Optional):</label>
+                <select id="categoryId" name="CategoryId" class="form-select" onchange="handleCategoryChange()">
+                    <option value="">-- All Categories --</option>
+                    @foreach (var category in Model.categories)
+                    {
+                        <option value="@category.CategoryId">@category.CategoryName</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col">
+                <label for="itemId">Select Item (Optional):</label>
+                <select id="itemId" name="ItemId" class="form-select" onchange="handleItemChange()">
+                    <option value="">-- All Items --</option>
+                    @foreach (var item in Model.items)
+                    {
+                        <option value="@item.ItemId">@item.ItemName</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Generate Report</button>
+    </div>
+</form>
+
+<script>
+    function handleCategoryChange() {
+        var categoryDropdown = document.getElementById("categoryId");
+        var itemDropdown = document.getElementById("itemId");
+
+        if (categoryDropdown.value) {
+            itemDropdown.value = ""; 
+        }
+    }
+    function handleItemChange() {
+        var categoryDropdown = document.getElementById("categoryId");
+        var itemDropdown = document.getElementById("itemId");
+
+        if (itemDropdown.value) {
+            categoryDropdown.value = ""; 
+        }
+    }
+</script>

@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - _4ThWallCafe.MVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" asp-action="Index" asp-controller="Home">☕ 4th Wall Café</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="GetMenu" asp-controller="Menu">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="GetOrder" asp-controller="Menu">Order Here</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="ViewCart" asp-controller="Cart">🛒 View Cart</a>   
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Login" asp-controller="Auth">Login </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @if (TempData["Message"] != null)
+    {
+        <div class="container mt-5 pt-4">
+            <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
+                <strong></strong> @TempData["Message"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    }
+    <div class="container mt-5 pt-5">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="footer text-white pt-4 pb-3 mt-auto" style="font-size: 0.9rem;">
+        <div class="container">
+            <div class="row gy-4">
+
+                <div class="col-md-3 col-sm-6">
+                    <h6 class="text-uppercase fw-bold mb-3">Get In Touch</h6>
+                    <p class="mb-1"><i class="bi bi-geo-alt-fill me-2"></i>123 Brew Street, Bedford, OH</p>
+                    <p class="mb-1"><i class="bi bi-telephone-fill me-2"></i>(440) 555-1234</p>
+                    <p><i class="bi bi-envelope-fill me-2"></i>contact@4thwallcafe.com</p>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <h6 class="text-uppercase fw-bold mb-3">Follow Us</h6>
+                    <p class="mb-2">Stay connected over a warm cup of something good.</p>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-0 px-2 py-1"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-0 px-2 py-1"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-0 px-2 py-1"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-0 px-2 py-1"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <h6 class="text-uppercase fw-bold mb-3">Open Hours</h6>
+                    <p class="mb-1"><strong>Mon – Fri:</strong> 7:00 AM – 8:00 PM</p>
+                    <p><strong>Sat – Sun:</strong> 8:00 AM – 6:00 PM</p>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <h6 class="text-uppercase fw-bold mb-3">Newsletter</h6>
+                    <p class="mb-2">Get updates, special offers & seasonal drink drops.</p>
+                    <form class="d-flex flex-nowrap align-items-center" style="max-width: 100%;">
+                        <input type="email" class="form-control rounded-2 me-2" placeholder="Your Email"
+                               style="height: 36px; font-size: 0.85rem; padding: 4px 8px; max-width: 180px;">
+                        <button class="btn rounded-2 fw-bold text-white"
+                                style="background-color: #c47e35; height: 36px; font-size: 0.85rem; padding: 4px 12px;">
+                            Sign Up
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <hr class="border-light my-3" />
+
+            <div class="text-center small mt-2" style="font-size: 0.8rem;">
+                &copy; 2025 <strong>4th Wall Café</strong>. All rights reserved. Designed with ☕ by Colby.
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

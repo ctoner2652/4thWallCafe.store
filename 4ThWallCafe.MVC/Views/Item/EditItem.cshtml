@@ -1,0 +1,70 @@
+﻿@model EditItemModel
+
+@{
+    ViewData["Title"] = "Edit Menu Item";
+    Layout = "_ManagerLayout";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">✏️ Edit Menu Item</h2>
+
+    <form asp-action="EditItem" asp-controller="Item" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="ItemID" />
+        <input type="hidden" asp-for="ItemPriceID" />
+        <div class="mb-3">
+            <label asp-for="ItemName" class="form-label">Item Name</label>
+            <input asp-for="ItemName" class="form-control" />
+            <span asp-validation-for="ItemName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ItemDescription" class="form-label">Description</label>
+            <textarea asp-for="ItemDescription" class="form-control"></textarea>
+            <span asp-validation-for="ItemDescription" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CategoryId" class="form-label">Category</label>
+            <select asp-for="CategoryId" asp-items="Model.Categories" class="form-select">
+                <option value="">-- Select Category --</option>
+            </select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="TimeOfDayId" class="form-label">Time of Day</label>
+            <select asp-for="TimeOfDayId" asp-items="Model.TimesOfDay" class="form-select">
+                <option value="">-- Select Time of Day --</option>
+            </select>
+            <span asp-validation-for="TimeOfDayId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label">Price ($)</label>
+            <input asp-for="Price" class="form-control" type="number" step="0.01" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="StartDate" class="form-label">Start Date</label>
+            <input asp-for="StartDate" class="form-control" type="date" />
+            <span asp-validation-for="StartDate" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="EndDate" class="form-label">End Date (Optional)</label>
+            <input asp-for="EndDate" class="form-control" type="date" />
+            <span asp-validation-for="EndDate" class="text-danger"></span>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">💾 Save Changes</button>
+            <a asp-action="GetItems" asp-controller="Item" class="btn btn-secondary">🔙 Back</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

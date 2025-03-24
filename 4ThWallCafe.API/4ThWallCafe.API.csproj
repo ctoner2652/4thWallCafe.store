@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>_4ThWallCafe.API</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\4ThWallCafe.Application\4ThWallCafe.Application.csproj" />
+    <ProjectReference Include="..\4ThWallCafe.Core\4ThWallCafe.Core.csproj" />
+  </ItemGroup>
+
+	<PropertyGroup>
+		<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<UserSecretsId>a3b1b822-3d41-4ead-975b-f74f71d2a84d</UserSecretsId>
+	</PropertyGroup>
+</Project>

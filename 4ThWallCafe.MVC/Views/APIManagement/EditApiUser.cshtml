@@ -1,0 +1,23 @@
+﻿@model EditUserViewModel
+
+@{
+    ViewData["Title"] = "Edit User";
+    Layout = "_ManagerLayout";
+}
+
+@if (Model != null)
+{
+    <h2>Edit User: @Model.UserName</h2>
+}
+<form asp-action="EditApiUser" asp-controller="APIManagement" method="post">
+    <input type="hidden" asp-for="UserName" />
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+
+    <button type="submit" class="btn btn-danger" asp-action="DeleteUser" asp-controller="APIManagement" asp-route-username="@Model.UserName"
+            onclick="return confirm('Are you sure you want to delete this user?');">
+        Delete User
+    </button>
+
+    <a asp-action="GetUsers" asp-controller="APIManagement" class="btn btn-secondary">Cancel</a>
+</form>

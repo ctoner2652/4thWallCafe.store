@@ -1,0 +1,35 @@
+﻿@model DisplayReportModel
+@{
+    ViewData["Title"] = "View Report";
+    Layout = "_ManagerLayout";
+}
+<h2>Report Results</h2>
+<h3>@Model.title</h3>
+@if (Model.Orders.Any())
+{
+    <h3>Orders</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Order Date</th>
+                <th>Order Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model.Orders)
+            {
+                <tr>
+                    <td>@order.OrderId</td>
+                    <td>@order.OrderDate.ToString("MM/dd/yyyy")</td>
+                    <td>$@order.AmountDue</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <p>Total Revenue from these orders : @Model.totalRevenue</p>
+}
+else
+{
+    <p>No orders found for the selected criteria.</p>
+}

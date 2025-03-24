@@ -1,0 +1,64 @@
+﻿@model List<ManagementMenuItem>
+
+@{
+    ViewData["Title"] = "Manage Menu Items";
+    Layout = "_ManagerLayout";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">📋 Menu Items Management</h2>
+
+    <div class="d-flex justify-content-between mb-3">
+        <a asp-action="CreateItem" asp-controller="Item" class="btn btn-success">➕ Add New Item</a>
+    </div>
+
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Item Name</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Time of Day</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ItemName</td>
+                        <td>@item.ItemDescription</td>
+                        <td>@item.CategoryName</td>
+                        <td>$@item.Price.ToString("0.00")</td>
+                        <td>@item.TimeOfDayName</td>
+                        <td>@item.StartDate.ToString("MM/dd/yyyy")</td>
+                        <td>
+                            @if (item.EndDate.HasValue)
+                            {
+                                @item.EndDate.Value.ToString("MM/dd/yyyy")
+                            }
+                            else
+                            {
+                                <span class="text-muted">N/A</span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="EditItem" asp-controller="Item" asp-route-ItemPriceID="@item.ItemPriceID" class="btn btn-primary btn-sm">✏️ Edit</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="8" class="text-center text-muted">No menu items available.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

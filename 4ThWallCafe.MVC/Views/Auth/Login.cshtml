@@ -1,0 +1,55 @@
+﻿@model UserSignIn
+
+@{
+    ViewData["Title"] = "Sign In";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center fw-bold mb-4" style="color: #4a342e;">☕ Sign In to 4th Wall Café</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg p-4 rounded">
+
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                            {
+                                <li>@error.ErrorMessage</li>
+                            }
+                        </ul>
+                    </div>
+                }
+
+
+                <form asp-action="Login" asp-controller="Auth" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Username" class="form-label fw-semibold text-muted">Username</label>
+                        <input asp-for="Username" class="form-control p-2" placeholder="Enter your username">
+                        <span asp-validation-for="Username" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label fw-semibold text-muted">Password</label>
+                        <input asp-for="Password" type="password" class="form-control p-2" placeholder="Enter your password">
+                        <span asp-validation-for="Password" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Sign In</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="text-center mt-3">
+                <small class="text-muted">Don't have an account? <a asp-action="Register" asp-controller="Auth">Sign up here</a></small>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

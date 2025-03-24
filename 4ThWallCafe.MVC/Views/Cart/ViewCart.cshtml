@@ -1,0 +1,52 @@
+﻿@model List<DisplayCartItem>
+
+@{
+    ViewData["Title"] = "Your Cart";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center fw-bold mb-4" style="color: #4a342e;">🛒 Your Cart</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table cart-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-end">Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><strong>@item.ItemName</strong></td>
+                            <td class="text-center">@item.Quantity</td>
+                            <td class="text-end fw-bold text-success">$@item.TotalPrice.ToString("0.00")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <a asp-action="GetOrder" asp-controller="Menu" class="btn btn-continue">← Continue Shopping</a>
+            <a asp-action="CheckOut" asp-controller="CheckOut" class="btn btn-continue">Proceed to Checkout →</a>
+        </div>
+
+        <div class="text-end mt-3">
+            <a asp-action="EmptyCart" asp-controller="Cart" class="btn btn-outline-danger">
+                🗑️ Empty Cart
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="text-center mt-5">
+            <p class="fw-bold text-muted">Your cart is empty. ☕</p>
+            <a asp-action="GetMenu" asp-controller="Menu" class="btn btn-continue">Explore Our Menu →</a>
+        </div>
+    }
+</div>

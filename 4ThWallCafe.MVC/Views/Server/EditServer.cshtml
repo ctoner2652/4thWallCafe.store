@@ -1,0 +1,63 @@
+﻿@model EditServerModel
+
+@{
+    ViewData["Title"] = "Edit Server";
+    Layout = "_ManagerLayout";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">Edit Server</h2>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            <ul>
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
+
+    <form asp-action="EditServer" asp-asp-controller="Server" method="post">
+        <input type="hidden" asp-for="ServerID" /> 
+
+        <div class="mb-3">
+            <label asp-for="FirstName" class="form-label">First Name</label>
+            <input asp-for="FirstName" class="form-control" placeholder="Enter First Name">
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="LastName" class="form-label">Last Name</label>
+            <input asp-for="LastName" class="form-control" placeholder="Enter Last Name">
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="DoB" class="form-label">Date of Birth</label>
+            <input asp-for="DoB" type="date" class="form-control">
+            <span asp-validation-for="DoB" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="HireDate" class="form-label">Hire Date</label>
+            <input asp-for="HireDate" type="date" class="form-control">
+            <span asp-validation-for="HireDate" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="TermDate" class="form-label">Termination Date (if applicable)</label>
+            <input asp-for="TermDate" type="date" class="form-control">
+            <span asp-validation-for="TermDate" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,96 @@
+﻿@model MenuViewModel
+@{
+    var timeSlots = new Dictionary<int, string>
+                    {
+                    { 1, "Breakfast" },
+                    { 2, "Lunch" },
+                    { 3, "Happy Hour" },
+                    { 4, "Dinner" }
+                    };
+
+    var selectedTime = timeSlots.FirstOrDefault(x => x.Value == Model.TimeOfDayName).Key;
+}
+<div class="container mt-5">
+    <h2 class="fw-bold text-uppercase mb-5 text-center">☕ Our Menu</h2>
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-6">
+            <form asp-action="GetMenu" asp-controller="Menu" method="post" class="d-flex align-items-center flex-wrap gap-2">
+                <label for="timeOfDay" class="form-label fw-semibold text-muted mb-0">
+                    Select Time of Day - Currently Showing:
+                </label>
+
+                <select id="timeOfDay" name="id" class="form-select form-select-sm w-auto" onchange="this.form.submit()">
+                    @foreach (var timeSlot in timeSlots)
+                    {
+                        <option value="@timeSlot.Key" selected="@(timeSlot.Key == selectedTime ? "selected" : null)">
+                            @timeSlot.Value
+                        </option>
+                    }
+                </select>
+            </form>
+        </div>
+    </div>
+    @foreach (var category in Model.Categories)
+    {
+        <div class="menu-row d-flex flex-column flex-md-row mb-5">
+            <div class="category-col pe-md-5 mb-3 mb-md-0 text-md-end text-uppercase">
+                <h3 class="category-title fw-bold">@category</h3>
+            </div>
+
+            <div class="item-col flex-grow-1">
+                @foreach (var item in Model.ItemsByCategory[category])
+                {
+                    <div class="menu-item pb-3 mb-3 border-bottom">
+                        <h4 class="item-name fw-bold text-highlight text-uppercase">
+                            @item.ItemName
+                        </h4>
+                        <p class="item-desc text-muted text-uppercase">
+                            @item.ItemDescription
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+<style>
+    .menu-row {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 2rem;
+    }
+
+    .category-col {
+        width: 200px;
+        min-width: 180px;
+        flex-shrink: 0;
+    }
+
+    .category-title {
+        font-size: 1.25rem;
+        color: #000;
+        border-left: 4px solid #ef8e63;
+        padding-left: 10px;
+    }
+
+    .item-col {
+        flex-grow: 1;
+    }
+
+    .menu-item {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .item-name {
+        font-size: 1.2rem;
+        color: #ef8e63;
+    }
+
+    .item-desc {
+        font-size: 0.9rem;
+        color: #666;
+        letter-spacing: 0.5px;
+    }
+
+    
+</style>

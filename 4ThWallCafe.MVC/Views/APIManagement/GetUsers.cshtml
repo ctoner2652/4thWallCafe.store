@@ -1,0 +1,29 @@
+﻿@model List<UserViewModel>
+
+@{
+    ViewData["Title"] = "User Management";
+    Layout = "_ManagerLayout";
+}
+
+<h2>API Account Management</h2>
+<a asp-action="CreateApiUser" asp-controller="APIManagement" class="btn btn-primary mb-3">Create New User</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>
+                    <a asp-action="EditApiUser" asp-controller="APIManagement" asp-route-username="@user.UserName" class="btn btn-warning btn-sm">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
