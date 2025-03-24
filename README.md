@@ -45,11 +45,59 @@ You will need a SQL Server instance. A `.bak` file of the database can be provid
 
 Update your `appsettings.json` file in both the API and MVC projects:
 
+
+Before running the application, make sure your `appsettings.json` files are properly configured for both the API and MVC projects.
+
+--- 
+### Both Projects 
+
 ```json
 "ConnectionStrings": {
   "DefaultConnection": "your-connection-string-here"
 }
 ```
+
+
+### 🔐 API - JWT Setup
+
+The API requires secure JWT token authentication for protected endpoints. Add the following section to your `appsettings.json` file in the **API** project:
+
+```json
+"Jwt": {
+  "Key": "here-is-my-44-character-long-key-for-my-secure-guy",
+  "Issuer": "4ThWallCafe",
+  "Audience": "Applications",
+  "Expiration": 3000
+}
+```
+
+- **Key**: Your secret signing key (must be long and secure; 44+ characters is good).
+- **Issuer**: Your custom issuer name (e.g. `4ThWallCafe`).
+- **Audience**: Who the token is intended for (e.g. `Applications`).
+- **Expiration**: Token lifetime in minutes (e.g. `30` = 30 minutes).
+
+---
+
+### 🖥️ MVC - API Credentials & Base URL
+
+In the **MVC** project, the app uses a dedicated API account to authenticate and fetch data from the API. Add this to your `appsettings.json`:
+
+```json
+"API": {
+  "BaseAddress": "API base address here",
+  "MVCAPIUserName": "api username here",
+  "MVCAPIPassword": "ap password here!"
+}
+```
+
+- **BaseAddress**: URL pointing to the deployed API.
+- **MVCAPIUserName / MVCAPIPassword**: Credentials for the API user (must be a valid API-only account set up in the Identity DB).
+
+---
+
+✅ Make sure the API user account has been seeded into the Identity system or registered through the Auth flow!
+
+
 
 ### 3. Run the API Project
 
