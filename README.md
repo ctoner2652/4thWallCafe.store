@@ -1,4 +1,4 @@
-# 4Th Wall Café
+# ☕ 4Th Wall Café
 
 Welcome to the 4Th Wall Café repository! This is a full-stack café management system built with .NET 8 featuring a robust Web API backend and an MVC frontend. The system supports everything from order handling and cart management to role-based user access and dynamic API user authentication. It's built to be modular, extensible, and ideal for both learning and small business operations.
 
@@ -107,19 +107,9 @@ All services are injected using constructor injection and have their own `ILogge
 
 ---
 
-## Troubleshooting
-
-If the API appears unresponsive after long idle time:
-
-- Ensure all services are registered as `Scoped`, not `Singleton`.
-- Double-check EF Core DbContext lifetimes.
-- Restarting the API may temporarily resolve the issue if caused by stale state.
-
----
-
 ## Author
 
-Developed with 💻 by Colby (aka @your-github-username)
+Developed with 💻 by Colby (aka @ctoner2652)
 
 ---
 
